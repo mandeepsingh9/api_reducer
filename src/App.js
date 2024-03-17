@@ -1,23 +1,27 @@
-import logo from './logo.svg';
+
 import './App.css';
+import { Suspense, useContext } from 'react';
+import { store } from './Store/store';
+
 
 function App() {
+     
+
+     let obj=useContext(store)
   return (
+
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        
+          <button onClick={obj.handleGetUser}>Get User</button>
+     
+      <div>
+        {
+          obj.data.map((item)=>(
+           <li>{item.firstName+" "+item.middleName+" "+item.lastName}</li>
+          ))
+        }
+      </div>
+
     </div>
   );
 }
